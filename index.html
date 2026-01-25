@@ -18,6 +18,34 @@
       <div class="logo-wrapper">
         <img src="enotix-logo.svg" alt="Enotix Team" id="main-logo" />
       </div>
+      <div id="result-container" class="result-container"></div>
+      <div class="input-wrapper">
+        <input
+          type="text"
+          id="prompt-input"
+          placeholder="Ask about Enotix..."
+          autocomplete="off"
+        />
+        <button id="send-button" aria-label="Send prompt">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-send-horizontal"
+          >
+            <path d="m3 3 3 9-3 9 19-9Z"></path>
+            <path d="M6 12h16"></path>
+          </svg>
+        </button>
+      </div>
     </div>
+
+    <script src="index.js"></script>
   </body>
 </html>
