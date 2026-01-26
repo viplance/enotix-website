@@ -15,10 +15,11 @@ async function sendPrompt() {
 
   try {
     const response = await fetch(
-      `http://localhost:3007/enotix?prompt=${encodeURIComponent(prompt)}`,
+      `https://ai.e-notix.com/enotix?prompt=${encodeURIComponent(prompt)}`,
     );
 
     if (!response.ok) throw new Error('Network response was not ok');
+
     const html = await response.text();
 
     // The response might be wrapped in ```html ... ``` or just be the HTML
