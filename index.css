@@ -84,7 +84,7 @@ body {
   padding: 20px;
   display: none;
   animation: fadeIn 0.5s ease-out;
-  color: #eee;
+  color: #ddd;
   font-size: 15px;
   line-height: 1.6;
 }
@@ -109,6 +109,14 @@ body {
 
 .result-container::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+.result-container a {
+  color: #fff;
+}
+
+.result-container img {
+  border-radius: 20px;
 }
 
 .input-wrapper {
