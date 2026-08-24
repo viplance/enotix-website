@@ -1,0 +1,9 @@
+{
+  "name": "enotix-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Enotix main website",
+  "scripts": {
+    "deploy": "gsutil -m rsync -r -d -x '\\.git/|\\.DS_Store|\\.claude/|\\.gitignore|package\\.json|node_modules/' . gs://e-notix.com/"
+  }
+}
