@@ -218,6 +218,8 @@ body::before {
   bottom: 20px;
   z-index: 1;
   font-size: 13px;
+  display: flex;
+  gap: 16px;
 }
 
 .site-footer a {

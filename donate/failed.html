@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment failed — Enotix</title>
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body.result-page {
+        min-height: 100vh;
+        height: auto;
+        width: 100%;
+        display: grid;
+        place-items: center;
+        overflow-x: hidden;
+        color: #ddd;
+      }
+
+      .result-shell {
+        position: relative;
+        z-index: 1;
+        width: min(100% - 40px, 480px);
+        text-align: center;
+        padding: 48px 0 80px;
+        animation: fadeIn 0.8s ease-out;
+      }
+
+      .result-icon {
+        font-size: 48px;
+        margin-bottom: 20px;
+        opacity: 0.6;
+      }
+
+      .result-title {
+        color: #fff;
+        font-size: clamp(28px, 5vw, 40px);
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        margin-bottom: 14px;
+      }
+
+      .result-text {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 32px;
+      }
+
+      .result-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .result-link {
+        display: inline-block;
+        padding: 12px 28px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 10px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 700;
+        transition: background 0.2s;
+      }
+
+      .result-link:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .result-link.primary {
+        background: #fff;
+        color: #000;
+        border-color: #fff;
+      }
+
+      .result-link.primary:hover {
+        opacity: 0.92;
+      }
+
+      .donate-brand {
+        display: inline-flex;
+        margin-bottom: 32px;
+      }
+
+      .donate-brand img {
+        width: 54px;
+        height: 54px;
+        object-fit: contain;
+        filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.12));
+      }
+    </style>
+  </head>
+  <body class="result-page">
+    <div class="result-shell">
+      <a href="/" class="donate-brand">
+        <img src="../enotix-logo.svg" alt="Enotix" />
+      </a>
+
+      <div class="result-icon">&#10007;</div>
+      <h1 class="result-title">Payment not completed</h1>
+      <p class="result-text">
+        The payment was not completed. No charges were made. You can try again whenever you like.
+      </p>
+
+      <div class="result-actions">
+        <a href="/donate/" class="result-link primary">Try again</a>
+        <a href="/" class="result-link">Back to Enotix</a>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <a href="../privacy.html">Privacy</a>
+    </footer>
+  </body>
+</html>

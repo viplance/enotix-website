@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support Enotix</title>
+    <meta name="description" content="Support the Enotix team with a donation" />
+    <link rel="stylesheet" href="../index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body.donate-page {
+        min-height: 100vh;
+        height: auto;
+        width: 100%;
+        display: block;
+        overflow-x: hidden;
+        overflow-y: auto;
+        color: #ddd;
+      }
+
+      .donate-shell {
+        position: relative;
+        z-index: 1;
+        width: min(100% - 40px, 480px);
+        margin: 0 auto;
+        padding: 48px 0 80px;
+        animation: fadeIn 0.8s ease-out;
+      }
+
+      .donate-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 48px;
+      }
+
+      .donate-brand {
+        display: inline-flex;
+        align-items: center;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .donate-brand img {
+        display: block;
+        width: 54px;
+        height: 54px;
+        object-fit: contain;
+        filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.12));
+      }
+
+      .donate-title {
+        margin-bottom: 10px;
+        color: #fff;
+        font-size: clamp(32px, 6vw, 48px);
+        line-height: 1;
+        letter-spacing: -0.04em;
+      }
+
+      .donate-subtitle {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 16px;
+        line-height: 1.55;
+        margin-bottom: 36px;
+      }
+
+      .donate-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        color: #fff;
+        font-family: inherit;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.2s, background 0.2s;
+        box-sizing: border-box;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        background: rgba(255, 255, 255, 0.09);
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 60px;
+        max-height: 150px;
+      }
+
+      .char-count {
+        text-align: right;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.3);
+        margin-top: 4px;
+      }
+
+      .amount-presets {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .amount-preset {
+        padding: 10px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 10px;
+        color: #fff;
+        font-family: inherit;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-align: center;
+      }
+
+      .amount-preset:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+
+      .amount-preset.active {
+        background: rgba(255, 255, 255, 0.14);
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+
+      .donate-btn {
+        width: 100%;
+        padding: 14px;
+        background: #fff;
+        border: none;
+        border-radius: 10px;
+        color: #000;
+        font-family: inherit;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: opacity 0.2s, transform 0.1s;
+        margin-top: 4px;
+      }
+
+      .donate-btn:hover {
+        opacity: 0.92;
+      }
+
+      .donate-btn:active {
+        transform: scale(0.98);
+      }
+
+      .donate-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .donate-error {
+        color: #ff6b6b;
+        font-size: 14px;
+        text-align: center;
+        display: none;
+      }
+
+      .donate-error.visible {
+        display: block;
+      }
+
+      .donate-note {
+        margin-top: 28px;
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 13px;
+        text-align: center;
+        line-height: 1.6;
+      }
+
+      .donate-note p {
+        margin: 0 0 14px;
+      }
+
+      .donate-badges {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        margin-bottom: 14px;
+      }
+
+      .wm-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 700;
+        transition: all 0.2s;
+      }
+
+      .wm-badge:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .donate-contacts {
+        color: rgba(255, 255, 255, 0.35);
+      }
+
+      .donate-contacts a {
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        text-underline-offset: 3px;
+      }
+
+      .donate-contacts a:hover {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      @media (max-width: 600px) {
+        .donate-shell {
+          width: min(100% - 32px, 480px);
+          padding-top: 28px;
+        }
+
+        .donate-header {
+          margin-bottom: 36px;
+        }
+
+        .donate-brand img {
+          width: 46px;
+          height: 46px;
+        }
+      }
+    </style>
+  </head>
+  <body class="donate-page">
+    <div class="donate-shell">
+      <header class="donate-header">
+        <a href="/" class="donate-brand">
+          <img src="../enotix-logo.svg" alt="Enotix" />
+        </a>
+        <a href="/" class="back-link">Back</a>
+      </header>
+
+      <h1 class="donate-title">Support us</h1>
+      <p class="donate-subtitle">
+        Your donation helps us keep building. Thank you for the support.
+      </p>
+
+      <form class="donate-form" id="donate-form" autocomplete="off">
+        <div class="form-group">
+          <label for="donor-name">Your name <span style="font-weight:400;text-transform:none;opacity:0.6">(optional)</span></label>
+          <input
+            type="text"
+            id="donor-name"
+            name="name"
+            placeholder="Enter your name"
+            maxlength="50"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="donor-message">Message <span style="font-weight:400;text-transform:none;opacity:0.6">(optional)</span></label>
+          <textarea
+            id="donor-message"
+            name="message"
+            placeholder="Say something nice..."
+            maxlength="300"
+          ></textarea>
+          <div class="char-count"><span id="msg-count">0</span>/300</div>
+        </div>
+
+        <div class="form-group">
+          <label>Amount (WMZ)</label>
+          <div class="amount-presets">
+            <button type="button" class="amount-preset" data-amount="1">$1</button>
+            <button type="button" class="amount-preset active" data-amount="5">$5</button>
+            <button type="button" class="amount-preset" data-amount="25">$25</button>
+          </div>
+          <input
+            type="number"
+            id="donor-amount"
+            name="amount"
+            placeholder="Custom amount"
+            min="0.50"
+            max="10000"
+            step="0.01"
+            value="5"
+            required
+          />
+        </div>
+
+        <div class="donate-error" id="donate-error"></div>
+
+        <button type="submit" class="donate-btn" id="donate-btn">Donate</button>
+      </form>
+
+      <div class="donate-note">
+        <p>
+          This is a voluntary donation to support the Enotix team.
+          No goods or services are provided in exchange.
+          Donations are non-refundable.
+        </p>
+        <div class="donate-badges">
+          <a href="https://passport.web.money/asp/certview.asp?wmid=233666882718" target="_blank" rel="noopener" class="wm-badge" title="Verify WM Passport">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1l1.8 3.6L14 5.3l-3 2.9.7 4.1L8 10.4 4.3 12.3l.7-4.1-3-2.9 4.2-.7L8 1z" fill="rgba(255,255,255,0.5)"/></svg>
+            WM Passport
+          </a>
+          <a href="https://www.web.money" target="_blank" rel="noopener" class="wm-badge" title="WebMoney">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="3" width="14" height="10" rx="2" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none"/><path d="M4.5 8L6 10l2-4 2 4 1.5-2" stroke="rgba(255,255,255,0.5)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            WebMoney
+          </a>
+        </div>
+        <p class="donate-contacts">
+          Contact: <span id="email-reveal">d*****@e-notix.com</span>
+          &middot; <span id="phone-reveal" title="Wait 5 seconds to see the real number">+90&#8239;534&#8239;<span id="phone-hidden">***&#8239;**&#8239;**</span></span>
+          &middot; WMID: <a href="https://passport.web.money/asp/certview.asp?wmid=233666882718" target="_blank" rel="noopener">233666882718</a>
+        </p>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <a href="../privacy.html">Privacy</a>
+    </footer>
+
+    <script>
+      const API_BASE = "https://us-central1-enotix.cloudfunctions.net/enotix-donate";
+
+      const form = document.getElementById("donate-form");
+      const nameInput = document.getElementById("donor-name");
+      const messageInput = document.getElementById("donor-message");
+      const amountInput = document.getElementById("donor-amount");
+      const msgCount = document.getElementById("msg-count");
+      const errorEl = document.getElementById("donate-error");
+      const submitBtn = document.getElementById("donate-btn");
+      const presets = document.querySelectorAll(".amount-preset");
+
+      messageInput.addEventListener("input", () => {
+        msgCount.textContent = messageInput.value.length;
+      });
+
+      presets.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          presets.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          amountInput.value = btn.dataset.amount;
+        });
+      });
+
+      amountInput.addEventListener("input", () => {
+        presets.forEach((b) => {
+          b.classList.toggle(
+            "active",
+            b.dataset.amount === amountInput.value
+          );
+        });
+      });
+
+      function showError(msg) {
+        errorEl.textContent = msg;
+        errorEl.classList.add("visible");
+      }
+
+      function clearError() {
+        errorEl.textContent = "";
+        errorEl.classList.remove("visible");
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        clearError();
+
+        const name = nameInput.value.trim();
+        const message = messageInput.value.trim();
+        const amount = parseFloat(amountInput.value);
+
+        if (name.length > 50) {
+          showError("Name must be at most 50 characters.");
+          return;
+        }
+        if (message && message.length > 300) {
+          showError("Message must be at most 300 characters.");
+          return;
+        }
+        if (!Number.isFinite(amount) || amount < 0.5) {
+          showError("Please enter a valid amount (minimum $0.50).");
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Processing...";
+
+        try {
+          const response = await fetch(`${API_BASE}/api/donations`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name,
+              message: message || undefined,
+              amount,
+            }),
+          });
+
+          if (!response.ok) {
+            const data = await response.json().catch(() => ({}));
+            throw new Error(data.error || "Failed to create donation");
+          }
+
+          const data = await response.json();
+          const checkout = data.checkout;
+
+          // Create a hidden form and submit to WebMoney
+          const wmForm = document.createElement("form");
+          wmForm.method = "POST";
+          wmForm.action = checkout.action;
+          wmForm.style.display = "none";
+
+          const fields = [
+            "LMI_PAYEE_PURSE",
+            "LMI_PAYMENT_AMOUNT",
+            "LMI_PAYMENT_NO",
+            "LMI_PAYMENT_DESC",
+            "LMI_RESULT_URL",
+            "LMI_SUCCESS_URL",
+            "LMI_FAIL_URL",
+          ];
+
+          fields.forEach((field) => {
+            if (checkout[field]) {
+              const input = document.createElement("input");
+              input.type = "hidden";
+              input.name = field;
+              input.value = checkout[field];
+              wmForm.appendChild(input);
+            }
+          });
+
+          document.body.appendChild(wmForm);
+          wmForm.submit();
+        } catch (err) {
+          showError(err.message || "Something went wrong. Please try again.");
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Donate";
+        }
+      });
+      setTimeout(function() {
+        var el = document.getElementById("phone-hidden");
+        if (el) {
+          var p = [6,8,7,6,5,1,6];
+          el.innerHTML = p.slice(0,3).join("") + " " + p.slice(3,5).join("") + " " + p.slice(5).join("");
+          var wrap = document.getElementById("phone-reveal");
+          var a = document.createElement("a");
+          a.href = "tel:+90534" + p.join("");
+          a.textContent = wrap.textContent;
+          a.style.cssText = "color:inherit;text-decoration:none";
+          a.onmouseover = function(){a.style.color="#fff";a.style.textDecoration="underline"};
+          a.onmouseout = function(){a.style.color="";a.style.textDecoration="none"};
+          wrap.replaceWith(a);
+        }
+
+        var em = document.getElementById("email-reveal");
+        if (em) {
+          var u = ["d","s","h","a","r","k","o"];
+          var d = "e-notix.com";
+          var addr = u.join("") + "@" + d;
+          var a2 = document.createElement("a");
+          a2.href = "mai" + "lto:" + addr;
+          a2.textContent = addr;
+          a2.style.cssText = "color:rgba(255,255,255,0.5);text-decoration:none;text-underline-offset:3px";
+          a2.onmouseover = function(){a2.style.color="#fff";a2.style.textDecoration="underline"};
+          a2.onmouseout = function(){a2.style.color="rgba(255,255,255,0.5)";a2.style.textDecoration="none"};
+          em.replaceWith(a2);
+        }
+      }, 5000);
+    </script>
+  </body>
+</html>
