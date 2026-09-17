@@ -362,6 +362,63 @@ body.privacy-page {
   font-size: 13px;
 }
 
+.product-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.product-card {
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.product-card:hover,
+.product-card:focus-within {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.product-link {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.product-name {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.product-card:hover .product-name,
+.product-link:focus-visible .product-name {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.product-host {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 13px;
+}
+
+.product-desc {
+  margin-top: 8px;
+  color: rgba(255, 255, 255, 0.63);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
 @media (max-width: 600px) {
   .site-footer {
     right: 18px;
