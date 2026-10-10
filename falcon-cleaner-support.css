@@ -1,0 +1,69 @@
+.support-contacts {
+  display: grid;
+  gap: 24px;
+  margin: 24px 0;
+}
+
+.support-contacts dt {
+  color: rgba(255, 255, 255, 0.63);
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.support-contacts dd {
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.support-page a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 5px;
+  border-radius: 2px;
+}
+
+.support-status {
+  min-height: 1.75em;
+}
+
+.privacy-section ul + p {
+  margin-top: 20px;
+}
+
+.support-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.63);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.support-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.support-footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.support-footer a:hover {
+  color: #fff;
+}
+
+@media (min-width: 600px) {
+  .support-contacts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .support-contacts > div:first-child {
+    grid-column: 1 / -1;
+  }
+}
