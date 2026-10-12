@@ -4,6 +4,6 @@
   "private": true,
   "description": "Enotix main website",
   "scripts": {
-    "deploy": "gsutil -m rsync -r -d -x '\\.git/|\\.DS_Store|\\.claude/|\\.gitignore|package\\.json|node_modules/' . gs://e-notix.com/"
+    "deploy": "gsutil -m rsync -r -d -x '\\.git/|\\.DS_Store|\\.claude/|\\.gitignore|package\\.json|node_modules/' . gs://e-notix.com/ && gsutil setmeta -h 'Cache-Control:no-cache, max-age=0, must-revalidate' gs://e-notix.com/contact.html gs://e-notix.com/contact.js gs://e-notix.com/contact.css"
   }
 }
