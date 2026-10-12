@@ -25,6 +25,6 @@
 
     revealContact(contactEmail, 'mai' + 'lto:' + email, email);
     revealContact(contactPhone, 'https://wa.me/90534' + number.join(''), phone);
-    contactStatus.textContent = 'Email or message Dzmitry Sharko for questions and support.';
+    contactStatus.remove();
   }, 5000);
 })();

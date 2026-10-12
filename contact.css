@@ -62,8 +62,4 @@
   .support-contacts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-  .support-contacts > div:first-child {
-    grid-column: 1 / -1;
-  }
 }
